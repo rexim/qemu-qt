@@ -216,12 +216,14 @@ QStringList MachineProcess::buildParamList()
 
     //Acceleration support
         //FIXME we should detect if the CPU/Kernel supports kvm, them use it. otherwise use kqemu instead. "-enable-kvm" is the option to enable kvm in qemu
-    if (!(property("virtualization").toBool()) && kvmVersion > 0)
-        arguments << "-no-kvm";
-    else if (!(property("virtualization").toBool()))
-        arguments << "-no-kqemu";
-    else if (property("virtualization").toBool() && kvmVersion <= 0)
-        arguments << "-kernel-kqemu";
+    // if (!(property("virtualization").toBool()) && kvmVersion > 0)
+    //     arguments << "-no-kvm";
+    // else if (!(property("virtualization").toBool()))
+    //     arguments << "-no-kqemu";
+    // else if (property("virtualization").toBool() && kvmVersion <= 0)
+    //     arguments << "-kernel-kqemu";
+    arguments << "-enable-kvm";
+    arguments << "-cpu" << "host";
 
     //Image resume support
     if (doResume)
@@ -309,7 +311,7 @@ void MachineProcess::start()
     beforeRunExecute();
 
 #ifndef Q_OS_WIN32
-    process->start(settings.value("command", "qemu").toString(), arguments);
+    process->start(settings.value("command", "qemu-system-x86_64").toString(), arguments);
 #elif defined(Q_OS_WIN32)
     arguments << "-L" << ".";
     QString qemuCommand = settings.value("command", QCoreApplication::applicationDirPath() + "/qemu/qemu.exe").toString();
