@@ -22,6 +22,7 @@
 ****************************************************************************/
 
 #include "machineconfig.h"
+#include <QDebug>
 #include <QFile>
 #include <QVariant>
 #include <QDomDocument>
@@ -50,7 +51,9 @@ bool MachineConfig::loadConfig(const QString &fileName)
     configFile = new QFile(fileName);
     if (!configFile->open(QFile::ReadOnly | QFile::Text))
     {
-        qDebug("Cannot read file" + fileName.toAscii() + ", " + configFile->errorString().toAscii());
+        qDebug() << "Cannot read file"
+                 << fileName << ", "
+                 << configFile->errorString();
         domDocument.appendChild(domDocument.createElement("qtemu"));
         root = domDocument.documentElement();
         return false;
@@ -85,7 +88,7 @@ bool MachineConfig::saveConfig(const QString &fileName) const
     QFile file(fileName);
     if (!file.open(QFile::WriteOnly | QFile::Text))
     {
-        qDebug("Cannot write file " + fileName.toAscii() +":\n" + file.errorString().toAscii());
+        qDebug() << "Cannot write file " << fileName << ":\n" << file.errorString();
         return false;
     }
 

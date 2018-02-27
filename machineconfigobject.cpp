@@ -22,6 +22,7 @@
 ****************************************************************************/
 
 #include "machineconfigobject.h"
+#include <QDebug>
 #include <QObject>
 #include <QStringList>
 #include <QDynamicPropertyChangeEvent>
@@ -354,7 +355,7 @@ void MachineConfigObject::getObjectValue()
     else
     {
         //if it's none of those... we don't know what it is yet.
-        qDebug("unknown object type" + QByteArray(object->metaObject()->className()));
+        qDebug() << "unknown object type " << QByteArray(object->metaObject()->className());
     }
 
     //save the option to the config

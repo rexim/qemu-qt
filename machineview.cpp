@@ -40,15 +40,15 @@ MachineView::MachineView(MachineConfigObject *config, QWidget *parent)
     , fullscreenEnabled(false)
 {
     embeddedScrollArea = new MachineScrollArea(this);
-    
+
     QVBoxLayout *layout = new QVBoxLayout;
     layout->addWidget(embeddedScrollArea);
     setLayout(layout);
-     
+
     showSplash(true);
 
     connect(embeddedScrollArea, SIGNAL(resized(int, int)), view, SLOT(scaleResize(int, int)));
-    
+
 
 }
 
@@ -76,7 +76,7 @@ void MachineView::initView()
     }
 
 //#ifdef DEVELOPER
-    qDebug("connecting to:" + url.toString().toAscii());
+    qDebug() << "connecting to: " << url.toString();
 //#endif
     view = new VncView(this, url);
     view->start();
@@ -155,7 +155,7 @@ void MachineView::fullscreen(bool enable)
         fullscreenWindow->setWindowState(0);
         fullscreenWindow->hide();
 
-        
+
 
         //get rid of the toolbar
         config->unregisterObject(scaleAction);
@@ -215,7 +215,7 @@ void MachineView::newViewSize()
         currentScrollArea = fullscreenScrollArea;
     else
         currentScrollArea = embeddedScrollArea;
-    
+
     currentScrollArea->setProperty("scaleEmbeddedDisplay", property("scaleEmbeddedDisplay"));
     currentScrollArea->resizeView(currentScrollArea->maximumViewportSize().width(), currentScrollArea->maximumViewportSize().height());
 }
