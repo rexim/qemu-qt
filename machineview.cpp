@@ -34,7 +34,7 @@
 
 MachineView::MachineView(MachineConfigObject *config, QWidget *parent)
  : QWidget(parent)
-    , view(new VncView(this))
+    , view(new GraphicsVncView(this))
     , splash(new MachineSplash(this))
     , config(config)
     , fullscreenEnabled(false)
@@ -78,7 +78,7 @@ void MachineView::initView()
 //#ifdef DEVELOPER
     qDebug() << "connecting to: " << url.toString();
 //#endif
-    view = new VncView(this, url);
+    view = new GraphicsVncView(this, url);
     view->start();
     showSplash(false);
     connect(view, SIGNAL(changeSize(int, int)), this, SLOT(newViewSize()));

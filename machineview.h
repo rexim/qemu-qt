@@ -24,7 +24,7 @@
 #ifndef MACHINEVIEW_H
 #define MACHINEVIEW_H
 
-#include "vnc/vncview.h"
+#include "vnc/graphicsvncview.h"
 #include "machinesplash.h"
 #include "floatingtoolbar.h"
 #include "machineconfigobject.h"
@@ -57,7 +57,7 @@ public:
     void captureAllKeys(bool enabled);
     void sendKey(QKeyEvent *event);
     bool event(QEvent * event);
-    
+
 public slots:
     void newViewSize();
     void fullscreen(bool enable);
@@ -71,7 +71,7 @@ signals:
 
 private:
 
-    VncView *view;
+    GraphicsVncView *view;
     MachineSplash *splash;
     FloatingToolBar *toolBar;
     MachineConfigObject *config;
