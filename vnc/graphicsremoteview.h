@@ -20,15 +20,6 @@ class KDE_EXPORT GraphicsRemoteView : public QWidget
 
 public:
 
-    Q_ENUMS(Quality)
-
-    enum Quality {
-        Unknown,
-        High,
-        Medium,
-        Low
-    };
-
     /**
     * Describes the state of a local cursor, if there is such a concept in the backend.
     * With local cursors, there are two cursors: the cursor on the local machine (client),

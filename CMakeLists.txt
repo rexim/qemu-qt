@@ -42,6 +42,7 @@ SET(qtemu_SRCS
     vnc/graphicsremoteview.cpp
     vnc/vncclientthread.cpp
     vnc/vncview.cpp
+    vnc/graphicsvncview.cpp
     machineview.cpp
     machinesplash.cpp
     machinescrollarea.cpp
@@ -74,6 +75,7 @@ SET(qtemu_MOC_HDRS
     configwindow.h
     mainwindow.h
     vnc/vncview.h
+    vnc/graphicsvncview.h
     vnc/remoteview.h
     vnc/graphicsremoteview.h
     vnc/vncclientthread.h
